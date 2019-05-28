@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    private float speed = 5.0f;
+    private float speed = 7.5f;
 
 
 	// Use this for initialization
@@ -22,8 +22,20 @@ public class Player : MonoBehaviour {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+
         Vector3 horizontalDirection = Vector3.right * speed * horizontalInput * Time.deltaTime;
         Vector3 verticalDirection = Vector3.up * speed * verticalInput * Time.deltaTime;
+
+        if (transform.position.x < -6.5f)
+            transform.position = new Vector3(-6.5f, transform.position.y, transform.position.z);
+        else if (transform.position.x > 8.0f)
+            transform.position = new Vector3(8.0f, transform.position.y, transform.position.z);
+
+        if (transform.position.y < -3.5f)
+            transform.position = new Vector3(transform.position.x, -3.5f, transform.position.z);
+        else if (transform.position.y > -1.0f)
+            transform.position = new Vector3(transform.position.x, -1.0f, transform.position.z);
+        
 
         transform.Translate(horizontalDirection + verticalDirection);
     }
