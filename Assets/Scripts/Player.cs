@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public GameObject laserPrefab;
+    [SerializeField]
+    private GameObject _laserPrefab;
 
-    private float fireRate = 0.25f;
-    private float canFire = 0.0f;
+    private bool powerUpTripleShot = false;
+
+    private float _fireRate = 0.25f;
+    private float _canFire = 0.0f;
     
-    private float speed = 7.5f;
+    private float _speed = 7.5f;
 
 
 	// Use this for initialization
@@ -29,8 +32,8 @@ public class Player : MonoBehaviour {
         float verticalInput = Input.GetAxis("Vertical");
 
 
-        Vector3 horizontalDirection = Vector3.right * speed * horizontalInput * Time.deltaTime;
-        Vector3 verticalDirection = Vector3.up * speed * verticalInput * Time.deltaTime;
+        Vector3 horizontalDirection = Vector3.right * _speed * horizontalInput * Time.deltaTime;
+        Vector3 verticalDirection = Vector3.up * _speed * verticalInput * Time.deltaTime;
 
         // Player movement limitations on x-axis
         if (transform.position.x < -6.0f)
@@ -49,18 +52,39 @@ public class Player : MonoBehaviour {
     }
 
     private void laserController()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+    {       
+        if (Input.GetKey(KeyCode.Space))
              shootLaser();
     }
 
     private void shootLaser()
     {
-        if (Time.time > canFire)
+        if (Time.time > _canFire)
+        {
+            List<Vector3> laserSpawnVectors = new List<Vector3>();
+            laserSpawnVectors.Add(transform.position + new Vector3(0.0f, 0.8f));
+
+            if (powerUpTripleShot)
             {
-                Vector3 relativeSpawnPos = new Vector3(0.0f, 0.8f);
-                Instantiate(laserPrefab, transform.position + relativeSpawnPos, Quaternion.identity);
-                canFire = Time.time + fireRate;
+                laserSpawnVectors.Add(transform.position + new Vector3(0.55f, -0.11f));
+                laserSpawnVectors.Add(transform.position + new Vector3(-0.55f, -0.11f));
             }
+
+            foreach (Vector3 vect in laserSpawnVectors)
+                Instantiate(_laserPrefab, vect, Quaternion.identity);
+            _canFire = Time.time + _fireRate;
+        }
+    }
+
+    public void EnableTripleShotPowerUp()
+    {
+        powerUpTripleShot = true;
+        StartCoroutine(DisableTripleShotPowerUpCoRoutine());
+    }
+
+    private IEnumerator DisableTripleShotPowerUpCoRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        powerUpTripleShot = false;
     }
 }
