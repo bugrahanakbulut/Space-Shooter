@@ -5,6 +5,8 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour {
 
     public float speed = 3.0f;
+    [SerializeField]
+    private int id; 
 
 	// Use this for initialization
 	void Start () {
@@ -30,8 +32,19 @@ public class PowerUp : MonoBehaviour {
             // null check for player
             if (player != null)
             {
-                // enable power up
-                player.EnableTripleShotPowerUp();
+                // enable triple shot
+                if (id == 0)
+                    player.EnableTripleShotPowerUp();
+                else if (id == 1)
+                {
+                    player.EnableSpeedPowerUp();
+                }
+                else if (id == 2)
+                {
+                    // sheild
+                }
+                    
+                
                 // destroy power up game object
                 Destroy(gameObject);
             }

@@ -12,8 +12,10 @@ public class Player : MonoBehaviour {
     private float _fireRate = 0.25f;
     private float _canFire = 0.0f;
     
-    private float _speed = 7.5f;
+    private float _speed = 5.0f;
+    private float _speedPowerUpScale = 1.5f;
 
+    private float _playerPowerUpTime = 5.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -82,9 +84,22 @@ public class Player : MonoBehaviour {
         StartCoroutine(DisableTripleShotPowerUpCoRoutine());
     }
 
+    
     private IEnumerator DisableTripleShotPowerUpCoRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(_playerPowerUpTime);
         powerUpTripleShot = false;
+    }
+
+    public void EnableSpeedPowerUp()
+    {
+        _speed *= _speedPowerUpScale;
+        StartCoroutine(DisableSpeedPowerUpCoRoutuine());
+    }
+
+    private IEnumerator DisableSpeedPowerUpCoRoutuine()
+    {
+        yield return new WaitForSeconds(_playerPowerUpTime);
+        _speed /= _speedPowerUpScale;
     }
 }
