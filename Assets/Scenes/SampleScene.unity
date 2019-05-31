@@ -310,6 +310,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _laserPrefab: {fileID: 1593168703306644, guid: 41e8805aed9a6aa429a8a16e719a3bb7,
     type: 2}
+  _explosionAnim: {fileID: 1638977800165618, guid: 8188eda2275b90f4f82f40477ae3f697,
+    type: 2}
   lives: 3
   health: 100
 --- !u!212 &1562035026

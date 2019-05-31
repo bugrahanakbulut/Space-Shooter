@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4814138726950532}
   - component: {fileID: 212772287798689872}
   - component: {fileID: 95046579496663410}
+  - component: {fileID: 114907726118509224}
   m_Layer: 0
   m_Name: Enemy_Explosion
   m_TagString: Untagged
@@ -59,6 +60,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114907726118509224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1989951626105902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e2a449845a18b4eaae3a6b68c8f94f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animDuration: 3
 --- !u!212 &212772287798689872
 SpriteRenderer:
   m_ObjectHideFlags: 1

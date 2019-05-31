@@ -8,6 +8,9 @@ public class Player : MonoBehaviour {
     private GameObject _laserPrefab;
 
     [SerializeField]
+    private GameObject _explosionAnim;
+
+    [SerializeField]
     private int lives = 3;
     [SerializeField]
     private float health = 100.0f;
@@ -90,8 +93,10 @@ public class Player : MonoBehaviour {
         else
         {
             lives--;
-            health = health - damage + 100;
-        
+            if (lives > 0)
+                health = health - damage + 100;
+            else
+                killPlayer();
         }
     }
 
@@ -118,5 +123,11 @@ public class Player : MonoBehaviour {
     {
         yield return new WaitForSeconds(_playerPowerUpTime);
         _speed /= _speedPowerUpScale;
+    }
+
+    private void killPlayer()
+    {
+        Instantiate(_explosionAnim, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }
