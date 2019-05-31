@@ -7,6 +7,11 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private GameObject _laserPrefab;
 
+    [SerializeField]
+    private int lives = 3;
+    [SerializeField]
+    private float health = 100.0f;
+
     private bool powerUpTripleShot = false;
 
     private float _fireRate = 0.25f;
@@ -75,6 +80,18 @@ public class Player : MonoBehaviour {
             foreach (Vector3 vect in laserSpawnVectors)
                 Instantiate(_laserPrefab, vect, Quaternion.identity);
             _canFire = Time.time + _fireRate;
+        }
+    }
+
+    public void doDamage(float damage)
+    {
+        if (health - damage > 0)
+            health -= damage;
+        else
+        {
+            lives--;
+            health = health - damage + 100;
+        
         }
     }
 
