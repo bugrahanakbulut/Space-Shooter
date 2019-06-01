@@ -7,6 +7,9 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private GameObject _laserPrefab;
 
+    //[SerializeField]
+    //private GameObject _sheild;
+
     [SerializeField]
     private GameObject _explosionAnim;
 
@@ -14,6 +17,12 @@ public class Player : MonoBehaviour {
     private int lives = 3;
     [SerializeField]
     private float health = 100.0f;
+
+    [SerializeField]
+    private GameObject _sheild;
+    private bool powerUpSheildEnabled = false;
+    private float sheildAmount = 50.0f;
+    private float remainingSheild = 50.0f;
 
     private bool powerUpTripleShot = false;
 
@@ -88,6 +97,28 @@ public class Player : MonoBehaviour {
 
     public void doDamage(float damage)
     {
+        // if sheild power up enabled
+        if (powerUpSheildEnabled)
+        {
+            // if sheild does not destroyed by damage
+            if (remainingSheild - damage > 0)
+            { 
+                remainingSheild -= damage;
+                return;
+            }
+            // if damage destroys sheild
+            else
+            {
+                // reset sheild
+                powerUpSheildEnabled = false;
+                _sheild.SetActive(false);
+                remainingSheild = sheildAmount; 
+                // handle the not absorbed damage by shield
+                damage -= remainingSheild;
+            }
+
+        }
+
         if (health - damage > 0)
             health -= damage;
         else
@@ -123,6 +154,21 @@ public class Player : MonoBehaviour {
     {
         yield return new WaitForSeconds(_playerPowerUpTime);
         _speed /= _speedPowerUpScale;
+    }
+
+    public void EnableSheildPowerUp()
+    {
+        powerUpSheildEnabled = true;
+        _sheild.SetActive(true);
+        StartCoroutine(DisableSheildPowerUpCoRoutine());
+    }
+
+    private IEnumerator DisableSheildPowerUpCoRoutine()
+    {
+        yield return new WaitForSeconds(_playerPowerUpTime);
+        powerUpSheildEnabled = false;
+        _sheild.SetActive(false);
+        remainingSheild = sheildAmount;
     }
 
     private void killPlayer()

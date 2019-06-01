@@ -9,7 +9,6 @@ public class AnimDestroyer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log("should be destroyed");
         StartCoroutine(DestroyAnimCoRoutine());
 	}
 	

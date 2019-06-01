@@ -41,7 +41,7 @@ public class PowerUp : MonoBehaviour {
                 }
                 else if (id == 2)
                 {
-                    // sheild
+                    player.EnableSheildPowerUp();
                 }
                     
                 
