@@ -16,11 +16,19 @@ public class PowerUp : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         movementController();
+        positionController();
 	}
 
     private void movementController()
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
+    }
+
+    private void positionController()
+    {
+        if (transform.position.y < -7)
+            Destroy(gameObject);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)

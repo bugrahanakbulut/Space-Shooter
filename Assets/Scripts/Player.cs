@@ -34,9 +34,12 @@ public class Player : MonoBehaviour {
 
     private float _playerPowerUpTime = 5.0f;
 
+    private UIManager _uiManager;
+
 	// Use this for initialization
 	void Start () {
         transform.position = new Vector3(0, -3, 0);
+        initUIManager();
 	}
 	
 	// Update is called once per frame
@@ -44,6 +47,13 @@ public class Player : MonoBehaviour {
         movementController();
         laserController();
 	}
+
+    private void initUIManager()
+    {
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _uiManager.UpdatePlayerLives(lives);
+
+    }
 
     private void movementController()
     {
@@ -124,11 +134,15 @@ public class Player : MonoBehaviour {
         else
         {
             lives--;
+            _uiManager.UpdatePlayerLives(lives);
             if (lives > 0)
                 health = health - damage + 100;
             else
                 killPlayer();
         }
+
+        _uiManager.UpdatePlayerHealth(health);
+
     }
 
     public void EnableTripleShotPowerUp()
@@ -136,7 +150,6 @@ public class Player : MonoBehaviour {
         powerUpTripleShot = true;
         StartCoroutine(DisableTripleShotPowerUpCoRoutine());
     }
-
     
     private IEnumerator DisableTripleShotPowerUpCoRoutine()
     {

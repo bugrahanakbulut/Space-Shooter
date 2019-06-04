@@ -66,6 +66,8 @@
     <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PowerUp.cs" />
+    <Compile Include="Assets\Scripts\SpawnManager.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
     <None Include="Assets\Game\Materials\Shaders\Galaxy.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/User/Desktop/workspace/UnityProjects/Space Shooter/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

@@ -16,10 +16,12 @@ public class Enemy : MonoBehaviour {
     [SerializeField]
     private GameObject explosionAnim;
 
+    private UIManager _uiManager;
 
     void Start () {
         transform.position = new Vector3(3.5f, -7.0f, 0.0f);
-	}
+        initUIManager();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -41,6 +43,11 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    private void initUIManager()
+    {
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+    }
+
     private void doDamage(float damage)
     {
         if ((health - damage) > 0)
@@ -48,6 +55,7 @@ public class Enemy : MonoBehaviour {
         else
         {
             Instantiate(explosionAnim, this.transform.position, Quaternion.identity);
+            _uiManager.UpdatePlayerScore();
             Destroy(gameObject);
         }
     }
@@ -58,11 +66,11 @@ public class Enemy : MonoBehaviour {
         {
             Player player = other.GetComponent<Player>();
             if (player != null)
-            {
                 player.doDamage(collusionDamageOnPlayer);
-            }
+            
 
             Instantiate(explosionAnim, this.transform.position, Quaternion.identity);
+            _uiManager.UpdatePlayerScore();
             Destroy(gameObject);
         }
 
