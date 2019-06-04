@@ -16,6 +16,14 @@ public class UIManager : MonoBehaviour
 
     public int score;
 
+    private bool paused = false;
+    
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            GameFlowController();
+    }
+
     public void UpdatePlayerLives(int playerLives)
     {
         livesImageDisplay.sprite = lives[playerLives];
@@ -40,6 +48,32 @@ public class UIManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void GameFlowController()
+    {
+        if (paused)
+            ResumeGame();
+        else
+            PauseGame();
+    }
+
+    public void PauseGame()
+    {
+        if (SceneManager.GetActiveScene().name == "SampleScene")
+        {
+            Time.timeScale = 0;
+            paused = true;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        if (SceneManager.GetActiveScene().name == "SampleScene")
+        {
+            Time.timeScale = 1;
+            paused = false;
+        }
     }
 }
 
