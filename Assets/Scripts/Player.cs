@@ -188,5 +188,6 @@ public class Player : MonoBehaviour {
     {
         Instantiate(_explosionAnim, transform.position, Quaternion.identity);
         Destroy(gameObject);
+        _uiManager.LoadMainMenu();
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -29,6 +30,16 @@ public class UIManager : MonoBehaviour
     public void UpdatePlayerHealth(float health)
     {
         healthSlider.value = health / 100.0f;
+    }
+
+    public void StartNewGame()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
 
