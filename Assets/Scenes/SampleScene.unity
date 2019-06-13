@@ -834,6 +834,23 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114272655852245734, guid: 1dc0f95d6d2430a4684b04d12cda10ca,
+        type: 2}
+      propertyPath: lives
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4066085039424932, guid: 1dc0f95d6d2430a4684b04d12cda10ca, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4066085039424932, guid: 1dc0f95d6d2430a4684b04d12cda10ca, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4066085039424932, guid: 1dc0f95d6d2430a4684b04d12cda10ca, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dc0f95d6d2430a4684b04d12cda10ca, type: 2}
   m_IsPrefabAsset: 0
@@ -864,6 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a6fe3588a1e8842882d9c36da6187a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _astreoid: {fileID: 1233297038192674, guid: 0a0d227f2b30a0b45a25e7a647d69e8f, type: 2}
   enemy: {fileID: 1629050802571678, guid: a4683b60faef1c54daab1c0e5a1873ac, type: 2}
   powerUps:
   - {fileID: 1110646720430124, guid: ecbd031abe8ca2a41b9443687e4c0599, type: 2}

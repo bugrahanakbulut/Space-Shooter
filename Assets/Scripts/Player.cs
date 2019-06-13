@@ -187,7 +187,8 @@ public class Player : MonoBehaviour {
     private void killPlayer()
     {
         Instantiate(_explosionAnim, transform.position, Quaternion.identity);
-        Destroy(gameObject);
         _uiManager.LoadMainMenu();
+        Destroy(gameObject);
+
     }
 }

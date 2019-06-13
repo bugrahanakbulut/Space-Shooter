@@ -12,11 +12,6 @@ public class AnimDestroyer : MonoBehaviour {
         StartCoroutine(DestroyAnimCoRoutine());
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    
     private IEnumerator DestroyAnimCoRoutine()
     {
         yield return new WaitForSeconds(animDuration);
