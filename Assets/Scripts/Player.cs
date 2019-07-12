@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private GameObject _laserPrefab;
 
+    private ObjectPooler _pooler;
+
     //[SerializeField]
     //private GameObject _sheild;
 
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         transform.position = new Vector3(0, -3, 0);
+        _pooler = GameObject.Find("ScriptHolder").GetComponent<ObjectPooler>();
         initUIManager();
 	}
 	
@@ -100,7 +103,12 @@ public class Player : MonoBehaviour {
             }
 
             foreach (Vector3 vect in laserSpawnVectors)
-                Instantiate(_laserPrefab, vect, Quaternion.identity);
+            {
+                GameObject laser = _pooler.GetPooledObject();
+                laser.transform.position = vect;
+                laser.SetActive(true);
+            }
+                
             _canFire = Time.time + _fireRate;
         }
     }
