@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour {
             if (laser != null)
             {
                 doDamage(laser.damage);
-                Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
             }
             
         }
